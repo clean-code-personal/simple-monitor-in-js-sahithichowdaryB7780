@@ -1,18 +1,27 @@
-const {expect} = require('chai');
+const { expect } = require('chai');
 
-function batteryIsOk(temperature, soc, charge_rate) {
-    if (temperature < 0 || temperature > 45) {
-        console.log('Temperature is out of range!');
-        return false;
-    } else if (soc < 20 || soc > 80) {
-        console.log('State of Charge is out of range!')
-        return false;
-    } else if (charge_rate > 0.8) {
-        console.log('Charge rate is out of range!');
-        return false;
-    }
-    return true;
+//To check if temp in range,returns true if it passes
+function temperatureInRange(inputTemperature) {
+    return (inputTemperature > 0 && inputTemperature < 45) ? true : false;
+
+}
+//To check if soc in range,returns true if it passes
+function socInRange(inputSoc) {
+    return (inputSoc > 20 && inputSoc < 80) ? true : false;
+}
+//To check if charge_rate in range, returns true if it passes
+function charge_rateInRange(inputCharge_Rate) {
+    return (inputCharge_Rate > 0 && inputCharge_Rate < 0.8) ? true : false;
 }
 
-expect(batteryIsOk(25, 70, 0.7)).to.be.true;
-expect(batteryIsOk(50, 85, 0)).to.be.false;
+
+function batteryIsOk(inputTemperature, inputSoc, inputCharge_Rate) {
+    let temperatureValue = temperatureInRange(inputTemperature);
+    let socValue = socInRange(inputSoc);
+    let charge_RateValue = charge_rateInRange(inputCharge_Rate);
+    const parameters = [temperatureValue, socValue, charge_RateValue];
+    let isBatteryOk = parameters.every(value => value);
+    return isBatteryOk;
+}
+
+module.exports = { batteryIsOk };
