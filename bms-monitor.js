@@ -1,24 +1,16 @@
 const { expect } = require('chai');
 
-//To check if temp in range,returns true if it passes
-function temperatureInRange(inputTemperature) {
-    return (inputTemperature > 0 && inputTemperature < 45) ? true : false;
+//To check if given input value in range,returns true if it passes
+function inRange(inputValue,min,max) {
+    return (inputValue > min && inputValue < max) ? true : false;
 
-}
-//To check if soc in range,returns true if it passes
-function socInRange(inputSoc) {
-    return (inputSoc > 20 && inputSoc < 80) ? true : false;
-}
-//To check if charge_rate in range, returns true if it passes
-function charge_rateInRange(inputCharge_Rate) {
-    return (inputCharge_Rate > 0 && inputCharge_Rate < 0.8) ? true : false;
 }
 
 
 function batteryIsOk(inputTemperature, inputSoc, inputCharge_Rate) {
-    let temperatureValue = temperatureInRange(inputTemperature);
-    let socValue = socInRange(inputSoc);
-    let charge_RateValue = charge_rateInRange(inputCharge_Rate);
+    let temperatureValue = inRange(inputTemperature,0,45);
+    let socValue = inRange(inputSoc,20,80);
+    let charge_RateValue = inRange(inputCharge_Rate,0,0.8);
     const parameters = [temperatureValue, socValue, charge_RateValue];
     let isBatteryOk = parameters.every(value => value);
     return isBatteryOk;
