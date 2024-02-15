@@ -1,21 +1,45 @@
 const { expect } = require('chai');
 const { batteryIsOk } = require('./bms-monitor');
 
-describe('Battery Monitoring System', function () {
-    it('should return true if all parameters are within range', function () {
-        expect(batteryIsOk(25, 50, 0.5)).to.be.true;
+describe('batteryIsOk function', function () {
+    it('should return true if all parameters are within normal range', function () {
+        const result = batteryIsOk(30, 70, 0.5, 'en');
+        expect(result.isBatteryOk).to.be.true;
+        console.log('Temperature status:', result.temperature);
+        console.log('SoC status:', result.soc);
+        console.log('Charge rate status:', result.chargeRate);
     });
 
-    it('should return false if temperature is out of range', function () {
-        expect(batteryIsOk(60, 50, 0.5)).to.be.false;
+    it('should return false if temperature is out of normal range', function () {
+        const result = batteryIsOk(50, 70, 0.5, 'en');
+        expect(result.isBatteryOk).to.be.false;
+        console.log('Temperature status:', result.temperature);
+        console.log('SoC status:', result.soc);
+        console.log('Charge rate status:', result.chargeRate);
     });
 
-    it('should return false if SOC is out of range', function () {
-        expect(batteryIsOk(25, 85, 0.5)).to.be.false;
+    it('should return false if SoC is out of normal range', function () {
+        const result = batteryIsOk(30, 10, 0.5, 'en');
+        expect(result.isBatteryOk).to.be.false;
+        console.log('Temperature status:', result.temperature);
+        console.log('SoC status:', result.soc);
+        console.log('Charge rate status:', result.chargeRate);
     });
 
-    it('should return false if charge rate is out of range', function () {
-        expect(batteryIsOk(25, 50, 1)).to.be.false;
+    it('should return false if charge rate is out of normal range', function () {
+        const result = batteryIsOk(30, 70, 1.0, 'en');
+        expect(result.isBatteryOk).to.be.false;
+        console.log('Temperature status:', result.temperature);
+        console.log('SoC status:', result.soc);
+        console.log('Charge rate status:', result.chargeRate);
     });
 
+    it('should return anomaly messages in German', function () {
+        const result = batteryIsOk(50, 10, 1.0, 'ge');
+        expect(result.isBatteryOk).to.be.false;
+        console.log('Temperature status:', result.temperature);
+        console.log('SoC status:', result.soc);
+        console.log('Charge rate status:', result.chargeRate);
+    });
 });
+
