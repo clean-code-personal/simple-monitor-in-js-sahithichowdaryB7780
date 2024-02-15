@@ -13,11 +13,15 @@ jobs:
         with: 
           node-version: '14'
 
-      - name: Install Dependncies
-        run:  sudo npm install
+      - name: Install Dependencies
+        run:  npm install mocha
+
+      - name: Install Project Dependencies
+        run: npm install
 
       - name: Run Mocha Tests
         run: npm test
       
       - name: BMS monitor
         run: node bms-monitor.js
+
