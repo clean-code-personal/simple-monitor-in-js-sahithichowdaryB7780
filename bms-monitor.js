@@ -9,7 +9,7 @@ function getStatus(parameter, inputValue, boundaryConditions) {
 
 function getAnomalyMessage(status, language) {
     const message = anomalyMessages[status];
-    return message ? message[language] || message['en'] : '';
+    return message[language];
 }
 
 
