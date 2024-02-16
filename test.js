@@ -35,7 +35,7 @@ describe('batteryIsOk function', function () {
     });
 
     it('should return anomaly messages in German', function () {
-        const result = batteryIsOk(50, 10, 1.0, 'en');
+        const result = batteryIsOk(50, 10, 1.0, 'ge');
         expect(result.isBatteryOk).to.be.false;
         console.log('Temperature status:', result.temperature);
         console.log('SoC status:', result.soc);
