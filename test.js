@@ -27,7 +27,7 @@ describe('batteryIsOk function', function () {
     });
 
     it('should return false if charge rate is out of normal range', function () {
-        const result = batteryIsOk(30, 70, 1.0, 'ge');
+        const result = batteryIsOk(30, 70, 1.0, 'en');
         expect(result.isBatteryOk).to.be.false;
         console.log('Temperature status:', result.temperature);
         console.log('SoC status:', result.soc);
@@ -35,7 +35,7 @@ describe('batteryIsOk function', function () {
     });
 
     it('should return anomaly messages in German', function () {
-        const result = batteryIsOk(50, 10, 1.0, 'ge');
+        const result = batteryIsOk(50, 10, 1.0, 'en');
         expect(result.isBatteryOk).to.be.false;
         console.log('Temperature status:', result.temperature);
         console.log('SoC status:', result.soc);
