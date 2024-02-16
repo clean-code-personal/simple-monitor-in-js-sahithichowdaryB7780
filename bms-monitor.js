@@ -9,8 +9,9 @@ function getStatus(parameter, inputValue, boundaryConditions) {
 
 function getAnomalyMessage(status, language) {
     const message = anomalyMessages[status];
-    return message ? message[language] || message['en'] : '';
+    return message;
 }
+
 
 
 
@@ -18,25 +19,20 @@ function batteryIsOk(inputTemperature, inputSoc, inputChargeRate, language) {
     const temperatureStatus = getStatus('temperature', inputTemperature, temperatureBoundaryConditions);
     const socStatus = getStatus('soc', inputSoc, socBoundaryConditions);
     const chargeRateStatus = getStatus('chargeRate', inputChargeRate, chargeRateBoundaryConditions);
-
     const temperatureMessage = getAnomalyMessage(temperatureStatus, language);
-    console.log('Temperature status:', temperatureStatus);
-    console.log('Temperature message:', temperatureMessage);
-    
     const socMessage = getAnomalyMessage(socStatus, language);
-    console.log('SoC status:', socStatus);
-    console.log('SoC message:', socMessage);
-    
     const chargeRateMessage = getAnomalyMessage(chargeRateStatus, language);
-    console.log('Charge rate status:', chargeRateStatus);
-    console.log('Charge rate message:', chargeRateMessage);
+
+    console.log('Temperature:', temperatureMessage[language]);
+    console.log('SOC:', socMessage[language]);
+    console.log('Charge_Rate:', chargeRateMessage[language]);
+
     const parameters = [temperatureStatus, socStatus, chargeRateStatus];
     let isBatteryOk = parameters.every(value => value === 'NORMAL');
 
-    return {
-        isBatteryOk
-    };
+    return { isBatteryOk };
 }
+
 
 module.exports = { batteryIsOk };
 
