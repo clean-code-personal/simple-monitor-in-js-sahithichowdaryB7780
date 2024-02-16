@@ -20,11 +20,16 @@ function batteryIsOk(inputTemperature, inputSoc, inputChargeRate, language) {
     const chargeRateStatus = getStatus('chargeRate', inputChargeRate, chargeRateBoundaryConditions);
 
     const temperatureMessage = getAnomalyMessage(temperatureStatus, language);
-    console.log('Temperature:',temperatureMessage);
+    console.log('Temperature status:', temperatureStatus);
+    console.log('Temperature message:', temperatureMessage);
+    
     const socMessage = getAnomalyMessage(socStatus, language);
-    console.log('SOC:',socMessage);
+    console.log('SoC status:', socStatus);
+    console.log('SoC message:', socMessage);
+    
     const chargeRateMessage = getAnomalyMessage(chargeRateStatus, language);
-    console.log('chargeRate:',chargeRateMessage);
+    console.log('Charge rate status:', chargeRateStatus);
+    console.log('Charge rate message:', chargeRateMessage);
     const parameters = [temperatureStatus, socStatus, chargeRateStatus];
     let isBatteryOk = parameters.every(value => value === 'NORMAL');
 
