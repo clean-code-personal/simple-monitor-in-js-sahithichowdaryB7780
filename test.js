@@ -27,7 +27,7 @@ describe('batteryIsOk function', function () {
     });
 
     it('should return false if charge rate is out of normal range', function () {
-        const result = batteryIsOk(30, 70, 1.0, 'en');
+        const result = batteryIsOk(30, 70, 1.0, 'ge');
         expect(result.isBatteryOk).to.be.false;
         console.log('Temperature status:', result.temperature);
         console.log('SoC status:', result.soc);
