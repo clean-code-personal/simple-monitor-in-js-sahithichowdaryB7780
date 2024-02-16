@@ -9,8 +9,9 @@ function getStatus(parameter, inputValue, boundaryConditions) {
 
 function getAnomalyMessage(status, language) {
     const message = anomalyMessages[status];
-    return message[language];
+    return message ? message[language] || message['en'] : '';
 }
+
 
 
 function batteryIsOk(inputTemperature, inputSoc, inputChargeRate, language) {
