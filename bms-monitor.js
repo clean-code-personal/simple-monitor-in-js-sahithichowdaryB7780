@@ -1,5 +1,5 @@
 const { expect } = require('chai');
-const { temperatureBoundaryConditions, socBoundaryConditions, chargeRateBoundaryConditions } = require('./boundaryConditions');
+const { temperatureBoundaryConditions, socBoundaryConditions, chargeRateBoundaryConditions } = require('./earlyWarnings');
 const { anomalyMessages } = require('./anomalyLanguages');
 
 function getStatus(parameter, inputValue, boundaryConditions) {
